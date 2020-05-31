@@ -14,7 +14,10 @@
 	</div>
 	<div id="container">
 		<div id="content">
-			<table border="1">
+            <input type="button" value="Add Item"
+                   onclick="window.location.href='showFormForAdd'; return false;"
+                   class="add-button">
+			<table>
 				<tr>
 					<th >Group</th>
 					<th >Food</th>
