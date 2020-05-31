@@ -19,16 +19,20 @@
                    class="add-button">
 			<table>
 				<tr>
-					<th >Group</th>
-					<th >Food</th>
+					<th>Group</th>
+					<th>Food</th>
 					<th>kCal/100g</th>
+                    <th>Action</th>
 				</tr>
 				<c:forEach var="tmpFood" items="${foods}">
-
+                    <c:url var="updateLink" value="/food/showFormForUpdate">
+                        <c:param name="foodId" value="${tmpFood.id}"/>
+                    </c:url>
 					<tr>
-						<td >${tmpFood.type}</td>
-						<td >${tmpFood.name}</td>
+						<td>${tmpFood.type}</td>
+						<td>${tmpFood.name}</td>
 						<td>${tmpFood.kcalPerHundredGm}</td>
+                        <td><a href="${updateLink}">Update</a></td>
 					</tr>
 				</c:forEach>
 			</table>
