@@ -1,2 +1,2 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%response.sendRedirect("food/home"); %>
+<%response.sendRedirect("food/list"); %>
