@@ -28,11 +28,19 @@
                     <c:url var="updateLink" value="/food/showFormForUpdate">
                         <c:param name="foodId" value="${tmpFood.id}"/>
                     </c:url>
+					<c:url var="deleteLink" value="/food/deleteFood">
+						<c:param name="foodId" value="${tmpFood.id}"/>
+					</c:url>
 					<tr>
 						<td>${tmpFood.type}</td>
 						<td>${tmpFood.name}</td>
 						<td>${tmpFood.kcalPerHundredGm}</td>
-                        <td><a href="${updateLink}">Update</a></td>
+                        <td>
+							<a href="${updateLink}">Update</a>|
+							<a href="${deleteLink}"
+							   onclick="if(!(confirm('Do you sure you want to delete this food?')))
+							   return false;">Delete</a>
+						</td>
 					</tr>
 				</c:forEach>
 			</table>
