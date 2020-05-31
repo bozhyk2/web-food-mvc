@@ -10,4 +10,6 @@ public interface FoodService {
     List<String> getExistFoodTypes();
 
     void saveFood(Food theFood);
+
+    Food getFood(int foodId);
 }

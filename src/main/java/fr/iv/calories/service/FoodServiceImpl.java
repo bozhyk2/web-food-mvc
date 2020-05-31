@@ -34,4 +34,11 @@ public class FoodServiceImpl implements FoodService {
         foodDaoImpl.saveFood(theFood);
 
     }
+
+    @Override
+    @Transactional
+    public Food getFood(int foodId) {
+
+        return foodDaoImpl.getFood(foodId);
+    }
 }

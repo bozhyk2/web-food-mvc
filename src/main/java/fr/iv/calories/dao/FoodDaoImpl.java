@@ -49,4 +49,11 @@ public class FoodDaoImpl implements FoodDao{
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(theFood);
     }
+
+    @Override
+    public Food getFood(int foodId) {
+        Session session = sessionFactory.getCurrentSession();
+        Food theFood = session.get(Food.class, foodId);
+        return theFood;
+    }
 }

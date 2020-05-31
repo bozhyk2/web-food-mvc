@@ -5,10 +5,7 @@ import fr.iv.calories.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -47,5 +44,14 @@ public class ControllerFood {
     public String saveFood(@ModelAttribute("food") Food theFood, Model theModel) {
         foodServiceImpl.saveFood(theFood);
      return listFoods(theModel);
+    }
+
+    @GetMapping("/showFormForUpdate")
+    public String showFormForUpdate(@RequestParam("foodId") int foodId, Model theModel) {
+        Food item = foodServiceImpl.getFood(foodId);
+        theModel.addAttribute("food", item);
+        List <String> types = foodServiceImpl.getExistFoodTypes();
+        theModel.addAttribute("foodTypes", types);
+        return "food-form";
     }
 }
