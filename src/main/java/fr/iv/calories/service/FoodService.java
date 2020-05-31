@@ -12,4 +12,6 @@ public interface FoodService {
     void saveFood(Food theFood);
 
     Food getFood(int foodId);
+
+    void deleteFood(int foodId);
 }

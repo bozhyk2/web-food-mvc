@@ -56,4 +56,14 @@ public class FoodDaoImpl implements FoodDao{
         Food theFood = session.get(Food.class, foodId);
         return theFood;
     }
+
+    @Override
+    public void deleteFood(int foodId) {
+        Session session = sessionFactory.getCurrentSession();
+        Food foodForDelete = session.get(Food.class, foodId);
+        if (foodForDelete!=null) {
+            session.delete(foodForDelete);
+        }
+
+    }
 }

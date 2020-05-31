@@ -54,4 +54,11 @@ public class ControllerFood {
         theModel.addAttribute("foodTypes", types);
         return "food-form";
     }
+
+    @GetMapping("/deleteFood")
+    public String deleteFood(@RequestParam("foodId") int foodId, Model theModel) {
+        foodServiceImpl.deleteFood(foodId);
+        return listFoods(theModel);
+    }
+
 }
