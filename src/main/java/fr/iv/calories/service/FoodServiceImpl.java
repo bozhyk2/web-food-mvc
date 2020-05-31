@@ -27,4 +27,11 @@ public class FoodServiceImpl implements FoodService {
 
         return foodDaoImpl.getExistFoodTypes();
     }
+
+    @Override
+    @Transactional
+    public void saveFood(Food theFood) {
+        foodDaoImpl.saveFood(theFood);
+
+    }
 }

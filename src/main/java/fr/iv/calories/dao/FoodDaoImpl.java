@@ -43,4 +43,10 @@ public class FoodDaoImpl implements FoodDao{
 
         return types;
     }
+
+    @Override
+    public void saveFood(Food theFood) {
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(theFood);
+    }
 }

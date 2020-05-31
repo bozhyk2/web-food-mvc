@@ -8,4 +8,6 @@ public interface FoodService {
     List<Food> getFoods();
 
     List<String> getExistFoodTypes();
+
+    void saveFood(Food theFood);
 }

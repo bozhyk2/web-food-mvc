@@ -8,4 +8,6 @@ public interface FoodDao {
     List<Food> getFoods();
 
     List<String> getExistFoodTypes();
+
+    void saveFood(Food theFood);
 }
