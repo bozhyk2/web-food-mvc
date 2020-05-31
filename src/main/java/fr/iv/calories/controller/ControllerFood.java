@@ -31,4 +31,13 @@ public class ControllerFood {
         theModel.addAttribute("foods", foods);
         return "list-foods";
     }
+    @GetMapping("/showFormForAdd")
+    public String showFormForAdd(Model theModel) {
+        Food item = new Food();
+        List<String> types = foodServiceImpl.getExistFoodTypes();
+        theModel.addAttribute("food", item);
+        theModel.addAttribute("foodTypes", types);
+
+        return "food-form";
+    }
 }

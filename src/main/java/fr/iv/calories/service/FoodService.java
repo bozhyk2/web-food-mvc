@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface FoodService {
     List<Food> getFoods();
+
+    List<String> getExistFoodTypes();
 }

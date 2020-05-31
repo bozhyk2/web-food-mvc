@@ -20,4 +20,11 @@ public class FoodServiceImpl implements FoodService {
         List <Food> foods = foodDaoImpl.getFoods();
      return foods;
     }
+
+    @Override
+    @Transactional
+    public List<String> getExistFoodTypes() {
+
+        return foodDaoImpl.getExistFoodTypes();
+    }
 }
