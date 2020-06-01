@@ -48,4 +48,11 @@ public class FoodServiceImpl implements FoodService {
 
         foodDaoImpl.deleteFood(foodId);
     }
+
+    @Override
+    @Transactional
+    public List<Food> searchFoods(String partFoodName) {
+
+        return foodDaoImpl.searchFoods(partFoodName);
+    }
 }

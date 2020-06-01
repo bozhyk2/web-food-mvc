@@ -14,4 +14,6 @@ public interface FoodDao {
     Food getFood(int foodId);
 
     void deleteFood(int foodId);
+
+    List<Food> searchFoods(String partFoodName);
 }

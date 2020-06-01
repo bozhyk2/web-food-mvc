@@ -18,13 +18,9 @@ public class FoodDaoImpl implements FoodDao{
     @Override
     public List<Food> getFoods() {
         Session session = sessionFactory.getCurrentSession();
-        List <Food> foods = session
-                            .createQuery(
-                       "FROM Food f "
-                               +"ORDER BY f.type,"
-                                       +" f.name",
-                                    Food.class)
-                            .getResultList();
+        String sqlQuery = "FROM Food f "+
+                          "ORDER BY f.type, f.name";
+        List <Food> foods = session.createQuery(sqlQuery,Food.class).getResultList();
      return foods;
     }
 
@@ -66,4 +62,23 @@ public class FoodDaoImpl implements FoodDao{
         }
 
     }
+
+    @Override
+    public List<Food> searchFoods(String partFoodName) {
+
+        if(partFoodName.trim()==null || partFoodName.trim().length()==0) {
+            return getFoods();
+        }
+        String sqlQuery = "FROM Food f "+
+                          "WHERE LOWER(f.name) LIKE :theName "+
+                          "OR LOWER(f.type) LIKE :theName "+
+                          "ORDER BY f.type, f.name";
+        Session session = sessionFactory.getCurrentSession();
+        Query <Food> theQuery = session.createQuery(sqlQuery, Food.class);
+        theQuery.setParameter("theName", "%"+partFoodName.trim().toLowerCase()+"%");
+
+        List<Food> searchFoods = theQuery.getResultList();
+        return searchFoods;
+    }
+
 }

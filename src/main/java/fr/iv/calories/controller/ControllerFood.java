@@ -61,4 +61,12 @@ public class ControllerFood {
         return listFoods(theModel);
     }
 
+    @GetMapping("/searchFood")
+    public String searchFoods(@RequestParam("theSearchFood") String partFoodName, Model theModel) {
+
+        List <Food> foods = foodServiceImpl.searchFoods(partFoodName);
+        theModel.addAttribute("foods", foods);
+        return "list-foods";
+    }
+
 }
