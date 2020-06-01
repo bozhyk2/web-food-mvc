@@ -1,5 +1,6 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix ="c" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
 <html>
@@ -17,6 +18,13 @@
             <input type="button" value="Add Item"
                    onclick="window.location.href='showFormForAdd'; return false;"
                    class="add-button">
+
+			<form:form action="searchFood" method="GET">
+
+				Search food: <input type="text" name="theSearchFood" placeholder="search...">
+
+				<input type="submit" value="Search" class="add-button"/>
+			</form:form>
 			<table>
 				<tr>
 					<th>Group</th>
