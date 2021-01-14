@@ -8,70 +8,67 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table (name ="food")
+@Table(name = "food")
 public class Food {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private int id;
-	
-	@Column (name = "type")
-	private String type;
-	
-	@Column(name = "name")
-	private String name;
-	
-	@Column(name = "kcal_per_hundred_grams")
-	private int kcalPerHundredGm;
 
-	public Food() {
-		
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
 
-	public Food(String type, String name, int kcalPerHundredGm) {
-		
-		this.type = type;
-		this.name = name;
-		this.kcalPerHundredGm = kcalPerHundredGm;
-	}
+    @Column(name = "type")
+    private String type;
 
-	public int getId() {
-		return id;
-	}
+    @Column(name = "name")
+    private String name;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    @Column(name = "kcal_per_hundred_grams")
+    private int kcalPerHundredGm;
 
-	public String getType() {
-		return type;
-	}
+    public Food() {
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    }
 
-	public String getName() {
-		return name;
-	}
+    public Food(String type, String name, int kcalPerHundredGm) {
+        this.type = type;
+        this.name = name;
+        this.kcalPerHundredGm = kcalPerHundredGm;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public int getId() {
 
-	public int getKcalPerHundredGm() {
-		return kcalPerHundredGm;
-	}
+        return id;
+    }
 
-	public void setKcalPerHundredGm(int kcalPerHundredGm) {
-		this.kcalPerHundredGm = kcalPerHundredGm;
-	}
-	
-	
-	
-	
-	
-	
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getType() {
+
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getName() {
+
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getKcalPerHundredGm() {
+
+        return kcalPerHundredGm;
+    }
+
+    public void setKcalPerHundredGm(int kcalPerHundredGm) {
+        this.kcalPerHundredGm = kcalPerHundredGm;
+    }
 
 }
