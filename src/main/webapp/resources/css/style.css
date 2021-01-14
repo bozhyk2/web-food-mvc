@@ -16,19 +16,17 @@ th {
 	background:none repeat scroll 0 0 #0775D3;
 	padding:10px;
 	color: #FFFFFF;
-	
 }
 
 tr {
 	border-top:1px solid #808080;
-	
 	text-align:center;
 }
 
- 
 tr:nth-child(even) {
 	background: #FFFFFF;
 }
+
 tr:nth-child(odd) {
 	background: #BBBBBB;
 }
@@ -40,8 +38,8 @@ tr:nth-child(odd) {
 	width: 70%;
     background: #0775D3;
     margin-top: 0px;
-
 }
+
 #header h2 {
 	width: 100%;
     margin:auto;
@@ -66,10 +64,7 @@ tr:nth-child(odd) {
     font-weight: bold;
     width: 120px;
     padding: 5px 10px;
-
     margin-bottom: 15px;
     margin-top: 15px;
     background: #CCCCCC;
 }
-
-
