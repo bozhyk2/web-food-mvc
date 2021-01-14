@@ -4,7 +4,9 @@
 
 <!DOCTYPE html>
 <html>
-<head><title>Calorie food</title>
+<head>
+	<title>Calorie food</title>
+
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css"/>
 </head>
 <body>
@@ -20,11 +22,10 @@
                    class="add-button">
 
 			<form:form action="searchFood" method="GET">
-
 				Search food: <input type="text" name="theSearchFood" placeholder="search...">
-
 				<input type="submit" value="Search" class="add-button"/>
 			</form:form>
+
 			<table>
 				<tr>
 					<th>Group</th>
@@ -54,7 +55,5 @@
 			</table>
 		</div>
 	</div>
-
 </body>
-
 </html>

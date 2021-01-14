@@ -4,12 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <title>Save food</title>
 
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css"/>
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/add-food-style.css"/>
-
 </head>
 <body>
     <div id="wrapper">
@@ -78,7 +76,6 @@
     </div>
     <script src="${pageContext.request.contextPath}/resources/js/add-food-script.js"></script>
 </body>
-
 </html>
 
 
