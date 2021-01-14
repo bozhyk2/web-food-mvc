@@ -5,6 +5,7 @@ import java.util.Properties;
 import java.util.logging.Logger;
 
 import javax.sql.DataSource;
+
 import org.hibernate.SessionFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,86 +29,87 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
-@ComponentScan(basePackages="fr.iv.calories")
+@ComponentScan(basePackages = "fr.iv.calories")
 @PropertySource({"classpath:food-db.properties"})
-public class FoodContextAppConfig implements WebMvcConfigurer{
-	
-	@Autowired
-	private Environment env;
+public class FoodContextAppConfig implements WebMvcConfigurer {
 
-	private Logger logger = Logger.getLogger(getClass().getName());
+    @Autowired
+    private Environment env;
 
-	@Bean
-	public ViewResolver viewResolver(){
-		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-		viewResolver.setPrefix("/WEB-INF/view/");
-		viewResolver.setSuffix(".jsp");
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
-		return viewResolver;
-	}
+    @Bean
+    public ViewResolver viewResolver() {
+        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+        viewResolver.setPrefix("/WEB-INF/view/");
+        viewResolver.setSuffix(".jsp");
 
-	// Food database through pool
-	@Bean
-	public DataSource myDataSource() {
-		ComboPooledDataSource myDataSource = new ComboPooledDataSource ();
-		
-		try {
-			myDataSource.setDriverClass(env.getProperty("jdbc.driver"));
-		}catch (PropertyVetoException e) {
+        return viewResolver;
+    }
 
-			throw new RuntimeException(e);
-		}
-		
-		logger.info("=====>>>url = "+env.getProperty("jdbc.url"));
-		logger.info("=====>>>user = "+env.getProperty("jdbc.user"));
-		
-		myDataSource.setJdbcUrl(env.getProperty("jdbc.url"));
-		myDataSource.setUser(env.getProperty("jdbc.user"));
-		myDataSource.setPassword(env.getProperty("jdbc.password"));
-		
-		myDataSource.setInitialPoolSize(getIntProperty("connection.pool.initialPoolSize"));
-		myDataSource.setMinPoolSize(getIntProperty("connection.pool.minPoolSize"));
-		myDataSource.setMaxPoolSize(getIntProperty("connection.pool.maxPoolSize"));
-		myDataSource.setMaxIdleTime(getIntProperty("connection.pool.maxIdleTime"));
+    // Food database through pool
+    @Bean
+    public DataSource myDataSource() {
+        ComboPooledDataSource myDataSource = new ComboPooledDataSource();
 
-		return myDataSource;
-	}
+        try {
+            myDataSource.setDriverClass(env.getProperty("jdbc.driver"));
+        } catch (PropertyVetoException e) {
 
-	@Bean
-	public LocalSessionFactoryBean sessionFactory() {
-		LocalSessionFactoryBean sessionFactory= new LocalSessionFactoryBean();
-		sessionFactory.setDataSource(myDataSource());
-		sessionFactory.setPackagesToScan(env.getProperty("hibernate.packagesToScan"));
-		sessionFactory.setHibernateProperties(getHibernateProperty());
+            throw new RuntimeException(e);
+        }
 
-		return sessionFactory;
-	}
-	
-	@Bean
-	@Autowired
-	public HibernateTransactionManager mytransactionManager(SessionFactory sessionFactory) {
-		HibernateTransactionManager mytransactionManager = new HibernateTransactionManager();
-		mytransactionManager.setSessionFactory(sessionFactory);
+        logger.info("=====>>>url = " + env.getProperty("jdbc.url"));
+        logger.info("=====>>>user = " + env.getProperty("jdbc.user"));
 
-		return mytransactionManager;
-	}
+        myDataSource.setJdbcUrl(env.getProperty("jdbc.url"));
+        myDataSource.setUser(env.getProperty("jdbc.user"));
+        myDataSource.setPassword(env.getProperty("jdbc.password"));
 
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/resources/**")
-				.addResourceLocations("/resources/");
-	}
+        myDataSource.setInitialPoolSize(getIntProperty("connection.pool.initialPoolSize"));
+        myDataSource.setMinPoolSize(getIntProperty("connection.pool.minPoolSize"));
+        myDataSource.setMaxPoolSize(getIntProperty("connection.pool.maxPoolSize"));
+        myDataSource.setMaxIdleTime(getIntProperty("connection.pool.maxIdleTime"));
 
-	private Properties getHibernateProperty() {
-		Properties properties = new Properties();
-		properties.setProperty("show_sql", env.getProperty("hibernate.show_sql"));
-		properties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
-		return properties;
-	}
+        return myDataSource;
+    }
 
-	private int getIntProperty(String nameProperty) {
+    @Bean
+    public LocalSessionFactoryBean sessionFactory() {
+        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+        sessionFactory.setDataSource(myDataSource());
+        sessionFactory.setPackagesToScan(env.getProperty("hibernate.packagesToScan"));
+        sessionFactory.setHibernateProperties(getHibernateProperty());
 
-		return Integer.parseInt(env.getProperty(nameProperty));
-	}
+        return sessionFactory;
+    }
+
+    @Bean
+    @Autowired
+    public HibernateTransactionManager mytransactionManager(SessionFactory sessionFactory) {
+        HibernateTransactionManager mytransactionManager = new HibernateTransactionManager();
+        mytransactionManager.setSessionFactory(sessionFactory);
+
+        return mytransactionManager;
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**")
+                .addResourceLocations("/resources/");
+    }
+
+    private Properties getHibernateProperty() {
+        Properties properties = new Properties();
+        properties.setProperty("show_sql", env.getProperty("hibernate.show_sql"));
+        properties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
+
+        return properties;
+    }
+
+    private int getIntProperty(String nameProperty) {
+
+        return Integer.parseInt(env.getProperty(nameProperty));
+    }
 
 }

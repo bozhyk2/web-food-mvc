@@ -8,67 +8,67 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table (name = "food")
+@Table(name = "food")
 public class Food {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private int id;
-	
-	@Column (name = "type")
-	private String type;
-	
-	@Column(name = "name")
-	private String name;
-	
-	@Column(name = "kcal_per_hundred_grams")
-	private int kcalPerHundredGm;
 
-	public Food() {
-		
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
 
-	public Food(String type, String name, int kcalPerHundredGm) {
-		this.type = type;
-		this.name = name;
-		this.kcalPerHundredGm = kcalPerHundredGm;
-	}
+    @Column(name = "type")
+    private String type;
 
-	public int getId() {
+    @Column(name = "name")
+    private String name;
 
-		return id;
-	}
+    @Column(name = "kcal_per_hundred_grams")
+    private int kcalPerHundredGm;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public Food() {
 
-	public String getType() {
+    }
 
-		return type;
-	}
+    public Food(String type, String name, int kcalPerHundredGm) {
+        this.type = type;
+        this.name = name;
+        this.kcalPerHundredGm = kcalPerHundredGm;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public int getId() {
 
-	public String getName() {
+        return id;
+    }
 
-		return name;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getType() {
 
-	public int getKcalPerHundredGm() {
+        return type;
+    }
 
-		return kcalPerHundredGm;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public void setKcalPerHundredGm(int kcalPerHundredGm) {
-		this.kcalPerHundredGm = kcalPerHundredGm;
-	}
+    public String getName() {
+
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getKcalPerHundredGm() {
+
+        return kcalPerHundredGm;
+    }
+
+    public void setKcalPerHundredGm(int kcalPerHundredGm) {
+        this.kcalPerHundredGm = kcalPerHundredGm;
+    }
 
 }

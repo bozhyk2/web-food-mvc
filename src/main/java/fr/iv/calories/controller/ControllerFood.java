@@ -18,7 +18,7 @@ public class ControllerFood {
     private FoodService foodServiceImpl;
 
     @GetMapping("/home")
-    public String home(){
+    public String home() {
 
         return "home-page";
     }
@@ -31,6 +31,7 @@ public class ControllerFood {
 
         return "list-foods";
     }
+
     @GetMapping("/showFormForAdd")
     public String showFormForAdd(Model theModel) {
         Food item = new Food();
@@ -52,7 +53,7 @@ public class ControllerFood {
     public String showFormForUpdate(@RequestParam("foodId") int foodId, Model theModel) {
         Food item = foodServiceImpl.getFood(foodId);
         theModel.addAttribute("food", item);
-        List <String> types = foodServiceImpl.getExistFoodTypes();
+        List<String> types = foodServiceImpl.getExistFoodTypes();
         theModel.addAttribute("foodTypes", types);
 
         return "food-form";
@@ -67,7 +68,7 @@ public class ControllerFood {
 
     @GetMapping("/searchFood")
     public String searchFoods(@RequestParam("theSearchFood") String partFoodName, Model theModel) {
-        List <Food> foods = foodServiceImpl.searchFoods(partFoodName);
+        List<Food> foods = foodServiceImpl.searchFoods(partFoodName);
         theModel.addAttribute("foods", foods);
 
         return "list-foods";

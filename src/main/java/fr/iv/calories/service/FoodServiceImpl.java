@@ -20,7 +20,7 @@ public class FoodServiceImpl implements FoodService {
     public List <Food> getFoods() {
         List <Food> foods = foodDaoImpl.getFoods();
 
-     return foods;
+        return foods;
     }
 
     @Override
