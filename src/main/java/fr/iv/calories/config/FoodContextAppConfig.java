@@ -4,14 +4,12 @@ import java.beans.PropertyVetoException;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-
 import javax.sql.DataSource;
-
 import org.hibernate.SessionFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -25,8 +23,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
@@ -49,15 +47,14 @@ public class FoodContextAppConfig implements WebMvcConfigurer{
 	}
 
 	// Food database through pool
-	
 	@Bean
 	public DataSource myDataSource() {
 		ComboPooledDataSource myDataSource = new ComboPooledDataSource ();
 		
 		try {
 			myDataSource.setDriverClass(env.getProperty("jdbc.driver"));
-		} catch (PropertyVetoException e) {
-			
+		}catch (PropertyVetoException e) {
+
 			throw new RuntimeException(e);
 		}
 		
@@ -72,17 +69,17 @@ public class FoodContextAppConfig implements WebMvcConfigurer{
 		myDataSource.setMinPoolSize(getIntProperty("connection.pool.minPoolSize"));
 		myDataSource.setMaxPoolSize(getIntProperty("connection.pool.maxPoolSize"));
 		myDataSource.setMaxIdleTime(getIntProperty("connection.pool.maxIdleTime"));
-		
-				return myDataSource;
+
+		return myDataSource;
 	}
-	
-	
+
 	@Bean
 	public LocalSessionFactoryBean sessionFactory() {
 		LocalSessionFactoryBean sessionFactory= new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(myDataSource());
 		sessionFactory.setPackagesToScan(env.getProperty("hibernate.packagesToScan"));
 		sessionFactory.setHibernateProperties(getHibernateProperty());
+
 		return sessionFactory;
 	}
 	
@@ -91,17 +88,15 @@ public class FoodContextAppConfig implements WebMvcConfigurer{
 	public HibernateTransactionManager mytransactionManager(SessionFactory sessionFactory) {
 		HibernateTransactionManager mytransactionManager = new HibernateTransactionManager();
 		mytransactionManager.setSessionFactory(sessionFactory);
+
 		return mytransactionManager;
 	}
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry
-		.addResourceHandler("/resources/**")
-		.addResourceLocations("/resources/");
-		
+		registry.addResourceHandler("/resources/**")
+				.addResourceLocations("/resources/");
 	}
-
 
 	private Properties getHibernateProperty() {
 		Properties properties = new Properties();
@@ -110,11 +105,9 @@ public class FoodContextAppConfig implements WebMvcConfigurer{
 		return properties;
 	}
 
-
 	private int getIntProperty(String nameProperty) {
 
 		return Integer.parseInt(env.getProperty(nameProperty));
 	}
-
 
 }

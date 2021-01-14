@@ -2,6 +2,7 @@ package fr.iv.calories.controller;
 
 import fr.iv.calories.entity.Food;
 import fr.iv.calories.service.FoodService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,16 +19,16 @@ public class ControllerFood {
 
     @GetMapping("/home")
     public String home(){
+
         return "home-page";
     }
 
     @RequestMapping("/list")
     public String listFoods(Model theModel) {
-
         List<Food> foods;
         foods = foodServiceImpl.getFoods();
-
         theModel.addAttribute("foods", foods);
+
         return "list-foods";
     }
     @GetMapping("/showFormForAdd")
@@ -43,7 +44,8 @@ public class ControllerFood {
     @PostMapping("/saveFood")
     public String saveFood(@ModelAttribute("food") Food theFood, Model theModel) {
         foodServiceImpl.saveFood(theFood);
-     return listFoods(theModel);
+
+        return listFoods(theModel);
     }
 
     @GetMapping("/showFormForUpdate")
@@ -52,20 +54,22 @@ public class ControllerFood {
         theModel.addAttribute("food", item);
         List <String> types = foodServiceImpl.getExistFoodTypes();
         theModel.addAttribute("foodTypes", types);
+
         return "food-form";
     }
 
     @GetMapping("/deleteFood")
     public String deleteFood(@RequestParam("foodId") int foodId, Model theModel) {
         foodServiceImpl.deleteFood(foodId);
+
         return listFoods(theModel);
     }
 
     @GetMapping("/searchFood")
     public String searchFoods(@RequestParam("theSearchFood") String partFoodName, Model theModel) {
-
         List <Food> foods = foodServiceImpl.searchFoods(partFoodName);
         theModel.addAttribute("foods", foods);
+
         return "list-foods";
     }
 

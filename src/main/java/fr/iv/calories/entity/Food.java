@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table (name ="food")
+@Table (name = "food")
 public class Food {
 	
 	@Id
@@ -30,13 +30,13 @@ public class Food {
 	}
 
 	public Food(String type, String name, int kcalPerHundredGm) {
-		
 		this.type = type;
 		this.name = name;
 		this.kcalPerHundredGm = kcalPerHundredGm;
 	}
 
 	public int getId() {
+
 		return id;
 	}
 
@@ -45,6 +45,7 @@ public class Food {
 	}
 
 	public String getType() {
+
 		return type;
 	}
 
@@ -53,6 +54,7 @@ public class Food {
 	}
 
 	public String getName() {
+
 		return name;
 	}
 
@@ -61,17 +63,12 @@ public class Food {
 	}
 
 	public int getKcalPerHundredGm() {
+
 		return kcalPerHundredGm;
 	}
 
 	public void setKcalPerHundredGm(int kcalPerHundredGm) {
 		this.kcalPerHundredGm = kcalPerHundredGm;
 	}
-	
-	
-	
-	
-	
-	
 
 }

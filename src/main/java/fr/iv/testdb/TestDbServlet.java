@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class TestDbServlet.
  * Class TestDbServlet validates the connection 
- * to a database records_service with method toGet.
+ * to a database web_calorie_tracker_ui with method toGet.
  * 
  */
 @WebServlet("/TestDbServlet")
@@ -38,18 +38,15 @@ public class TestDbServlet extends HttpServlet {
 		String driver = "com.mysql.cj.jdbc.Driver";
 		// connection object
 		Connection connection = null;
+
 		//Output stream object. It will write text response in browser for client. 
 	   	try (PrintWriter out = response.getWriter()){
-			
-			
 			Class.forName(driver);
 			//Create connection to the database
 			connection = DriverManager.getConnection(jdbcUrl, user, password);
 			out.println("Connection to database: " + jdbcUrl+" ... ");
 			out.println("success");
-			
 		}catch(ClassNotFoundException e){
-			
 			e.getMessage();
 		}catch (SQLException e) {		
 			e.getMessage();
@@ -65,5 +62,4 @@ public class TestDbServlet extends HttpServlet {
 			
 		}
 	}
-
 }

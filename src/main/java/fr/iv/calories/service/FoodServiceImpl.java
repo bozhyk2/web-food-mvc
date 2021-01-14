@@ -2,6 +2,7 @@ package fr.iv.calories.service;
 
 import fr.iv.calories.dao.FoodDao;
 import fr.iv.calories.entity.Food;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,7 @@ public class FoodServiceImpl implements FoodService {
     @Transactional
     public List <Food> getFoods() {
         List <Food> foods = foodDaoImpl.getFoods();
+
      return foods;
     }
 
@@ -32,7 +34,6 @@ public class FoodServiceImpl implements FoodService {
     @Transactional
     public void saveFood(Food theFood) {
         foodDaoImpl.saveFood(theFood);
-
     }
 
     @Override
@@ -45,7 +46,6 @@ public class FoodServiceImpl implements FoodService {
     @Override
     @Transactional
     public void deleteFood(int foodId) {
-
         foodDaoImpl.deleteFood(foodId);
     }
 
@@ -55,4 +55,5 @@ public class FoodServiceImpl implements FoodService {
 
         return foodDaoImpl.searchFoods(partFoodName);
     }
+
 }
